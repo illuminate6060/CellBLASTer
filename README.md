@@ -96,7 +96,7 @@ python ../CellBlaster-main/CellBlaster-main/CellBlaster/CellBlaster.py \
 | `--filter_keywords` | `-f` | **Optional**. List of keywords to filter out genes (case-insensitive). <br> Defaults to `LNC`. Can include `mt` or `cp` to remove organelle genes. |
 | `--output_path` | `-o` | **Optional**. Root output directory (defaults to `./`). <br> Results are saved in the `03.Blast_Result` directory. |
 
-## Usage2:Annotation by new defined dataset
+# Usage2: Annotation by new defined dataset
 If the built-in database does not meet your requirements, please refer to the examples in the Use_OwnData directory. The steps are as follows:
 
 **(1) First, download the required data for OrthoFinder.**
