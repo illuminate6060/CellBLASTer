@@ -1,122 +1,0 @@
-/jdfsbjcas1/ST_BJ/P21Z28400N0234/dulin/miniconda3/lib/python3.9/site-packages/scanpy/preprocessing/_simple.py:250: ImplicitModificationWarning: Trying to modify attribute `.var` of view, initializing view as actual.
-  adata.var['n_cells'] = number
-/jdfsbjcas1/ST_BJ/P21Z28400N0234/dulin/miniconda3/lib/python3.9/site-packages/scanpy/preprocessing/_highly_variable_genes.py:226: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
-  disp_grouped = df.groupby("mean_bin")["dispersions"]
-/jdfsbjcas1/ST_BJ/P21Z28400N0234/dulin/miniconda3/lib/python3.9/site-packages/scanpy/preprocessing/_simple.py:843: UserWarning: Received a view of an AnnData. Making a copy.
-  view_to_actual(adata)
-WARNING: adata.X seems to be already log-transformed.
-WARNING: It seems you use rank_genes_groups on the raw count data. Please logarithmize your data before calling rank_genes_groups.
-/jdfsbjcas1/ST_BJ/P21Z28400N0234/dulin/miniconda3/lib/python3.9/site-packages/numpy/core/fromnumeric.py:86: FutureWarning: The behavior of DataFrame.sum with axis=None is deprecated, in a future version this will reduce over both axes and return a scalar. To retain the old behavior, pass axis=0 (or do not pass axis)
-  return reduction(axis=axis, out=out, **passkwargs)
-/jdfsbjcas1/ST_BJ/P21Z28400N0234/dulin/annotation/6.2025.4.11-cross-sp/04.label_seq_v4/0.figure/github/CellBlaster-main/CellBlaster-main/CellBlaster/CellBlaster.py:279: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
-  top200_degs = degs.groupby('group').head(150)
-WARNING: adata.X seems to be already log-transformed.
-/jdfsbjcas1/ST_BJ/P21Z28400N0234/dulin/annotation/6.2025.4.11-cross-sp/04.label_seq_v4/0.figure/github/CellBlaster-main/CellBlaster-main/CellBlaster/CellBlaster.py:302: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  Celltype['Cell'] = df.index
-Starting to download 2 datasets from Dicot Database to 01.DataBase...
-Downloading CRA008947 files...
-File CRA008947.all.txt already exists. Skipping...
-File CRA008947.Celltype.txt already exists. Skipping...
-File CRA008947.topDEGs.csv already exists. Skipping...
-Downloading CRA007122 files...
-File CRA007122.all.txt already exists. Skipping...
-File CRA007122.Celltype.txt already exists. Skipping...
-File CRA007122.topDEGs.csv already exists. Skipping...
-File Celltype.txt already exists. Skipping...
-File Dicot_Orthogroups.txt already exists. Skipping...
-Starting to process 2 datasets from Dicot Database...
-Read Orthogroups information...
-Load Database data...
-Processing CRA008947 with prefix d1...
-Processing CRA007122 with prefix d2...
-Merging complete! Total cells: 2
-Generate file of the query data specified by the user to 02.QueryData...
-01.Read data and creat directory: /jdfsbjcas1/ST_BJ/P21Z28400N0234/dulin/annotation/6.2025.4.11-cross-sp/04.label_seq_v4/0.figure/github/CellBlaster-main/CellBlaster-main/tests/Output/02.QueryData/
-Filtering genes containing: AthLNC|Mt-|cp
-02.Performing Outlier Detection...
-03.DEG Analysis (Wilcoxon Rank-Sum Test)...
-04.Generating symbolic outputs...
-Annotaion starting...
-Number of common OGs: 84
-Computing similarity:   0%|          | 0/908 [00:00<?, ?it/s]Computing similarity:   9%|▊         | 78/908 [00:00<00:01, 773.90it/s]Computing similarity:  17%|█▋        | 157/908 [00:00<00:00, 778.50it/s]Computing similarity:  26%|██▌       | 236/908 [00:00<00:00, 781.85it/s]Computing similarity:  35%|███▍      | 315/908 [00:00<00:00, 782.86it/s]Computing similarity:  43%|████▎     | 394/908 [00:00<00:00, 778.52it/s]Computing similarity:  52%|█████▏    | 473/908 [00:00<00:00, 780.35it/s]Computing similarity:  61%|██████    | 552/908 [00:00<00:00, 782.08it/s]Computing similarity:  69%|██████▉   | 631/908 [00:00<00:00, 783.35it/s]Computing similarity:  78%|███████▊  | 710/908 [00:00<00:00, 782.64it/s]Computing similarity:  87%|████████▋ | 789/908 [00:01<00:00, 783.63it/s]Computing similarity:  96%|█████████▌| 868/908 [00:01<00:00, 784.33it/s]Computing similarity: 100%|██████████| 908/908 [00:01<00:00, 782.32it/s]
-Number of common OGs: 65
-Computing similarity:   0%|          | 0/908 [00:00<?, ?it/s]Computing similarity:   7%|▋         | 60/908 [00:00<00:01, 598.07it/s]Computing similarity:  13%|█▎        | 122/908 [00:00<00:01, 606.53it/s]Computing similarity:  20%|██        | 184/908 [00:00<00:01, 610.56it/s]Computing similarity:  27%|██▋       | 246/908 [00:00<00:01, 611.77it/s]Computing similarity:  34%|███▍      | 308/908 [00:00<00:00, 612.29it/s]Computing similarity:  41%|████      | 370/908 [00:00<00:00, 612.03it/s]Computing similarity:  48%|████▊     | 432/908 [00:00<00:00, 613.13it/s]Computing similarity:  54%|█████▍    | 494/908 [00:00<00:00, 613.79it/s]Computing similarity:  61%|██████    | 556/908 [00:00<00:00, 613.39it/s]Computing similarity:  68%|██████▊   | 618/908 [00:01<00:00, 614.30it/s]Computing similarity:  75%|███████▍  | 680/908 [00:01<00:00, 614.47it/s]Computing similarity:  82%|████████▏ | 742/908 [00:01<00:00, 612.85it/s]Computing similarity:  89%|████████▊ | 804/908 [00:01<00:00, 613.65it/s]Computing similarity:  95%|█████████▌| 866/908 [00:01<00:00, 614.05it/s]Computing similarity: 100%|██████████| 908/908 [00:01<00:00, 612.80it/s]
-Qualified celltype:  ['Cortex', 'Endodermis', 'Pericycle', 'Procambium', 'Root cap']
-2  round of blast celltype
-Number of common OGs: 84
-Computing similarity:   0%|          | 0/281 [00:00<?, ?it/s]Computing similarity:  74%|███████▎  | 207/281 [00:00<00:00, 2061.06it/s]Computing similarity: 100%|██████████| 281/281 [00:00<00:00, 2061.16it/s]
-Number of common OGs: 65
-Computing similarity:   0%|          | 0/281 [00:00<?, ?it/s]Computing similarity:  46%|████▌     | 128/281 [00:00<00:00, 1272.88it/s]Computing similarity:  91%|█████████ | 256/281 [00:00<00:00, 1265.61it/s]Computing similarity: 100%|██████████| 281/281 [00:00<00:00, 1265.68it/s]
-/jdfsbjcas1/ST_BJ/P21Z28400N0234/dulin/annotation/6.2025.4.11-cross-sp/04.label_seq_v4/0.figure/github/CellBlaster-main/CellBlaster-main/CellBlaster/CellBlaster.py:175: UserWarning: Tight layout not applied. tight_layout cannot make axes width small enough to accommodate all axes decorations
-  plt.tight_layout()
-Qualified celltype:  ['Epidermis', 'Root hair']
-/jdfsbjcas1/ST_BJ/P21Z28400N0234/dulin/miniconda3/lib/python3.9/site-packages/scanpy/preprocessing/_simple.py:250: ImplicitModificationWarning: Trying to modify attribute `.var` of view, initializing view as actual.
-  adata.var['n_cells'] = number
-/jdfsbjcas1/ST_BJ/P21Z28400N0234/dulin/miniconda3/lib/python3.9/site-packages/scanpy/preprocessing/_highly_variable_genes.py:226: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
-  disp_grouped = df.groupby("mean_bin")["dispersions"]
-/jdfsbjcas1/ST_BJ/P21Z28400N0234/dulin/miniconda3/lib/python3.9/site-packages/scanpy/preprocessing/_simple.py:843: UserWarning: Received a view of an AnnData. Making a copy.
-  view_to_actual(adata)
-WARNING: adata.X seems to be already log-transformed.
-WARNING: It seems you use rank_genes_groups on the raw count data. Please logarithmize your data before calling rank_genes_groups.
-/jdfsbjcas1/ST_BJ/P21Z28400N0234/dulin/miniconda3/lib/python3.9/site-packages/numpy/core/fromnumeric.py:86: FutureWarning: The behavior of DataFrame.sum with axis=None is deprecated, in a future version this will reduce over both axes and return a scalar. To retain the old behavior, pass axis=0 (or do not pass axis)
-  return reduction(axis=axis, out=out, **passkwargs)
-/jdfsbjcas1/ST_BJ/P21Z28400N0234/dulin/annotation/6.2025.4.11-cross-sp/04.label_seq_v4/0.figure/github/CellBlaster-main/CellBlaster-main/CellBlaster/CellBlaster.py:279: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
-  top200_degs = degs.groupby('group').head(150)
-WARNING: adata.X seems to be already log-transformed.
-/jdfsbjcas1/ST_BJ/P21Z28400N0234/dulin/annotation/6.2025.4.11-cross-sp/04.label_seq_v4/0.figure/github/CellBlaster-main/CellBlaster-main/CellBlaster/CellBlaster.py:302: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  Celltype['Cell'] = df.index
-/jdfsbjcas1/ST_BJ/P21Z28400N0234/dulin/annotation/6.2025.4.11-cross-sp/04.label_seq_v4/0.figure/github/CellBlaster-main/CellBlaster-main/tests/Output
-/jdfsbjcas1/ST_BJ/P21Z28400N0234/dulin/annotation/6.2025.4.11-cross-sp/04.label_seq_v4/0.figure/github/CellBlaster-main/CellBlaster-main/tests/Demo_Data_SRP285040.h5ad
-Starting to download 2 datasets from Dicot Database to 01.DataBase...
-Downloading CRA008947 files...
-Downloading CRA008947.all.txt from https://zenodo.org/records/19347241/files/CRA008947.all.txt?download=1...
-Successfully downloaded: CRA008947.all.txt
-Downloading CRA008947.Celltype.txt from https://zenodo.org/records/19347241/files/CRA008947.Celltype.txt?download=1...
-Successfully downloaded: CRA008947.Celltype.txt
-Downloading CRA008947.topDEGs.csv from https://zenodo.org/records/19347241/files/CRA008947.topDEGs.csv?download=1...
-Successfully downloaded: CRA008947.topDEGs.csv
-Downloading CRA007122 files...
-Downloading CRA007122.all.txt from https://zenodo.org/records/19347241/files/CRA007122.all.txt?download=1...
-Successfully downloaded: CRA007122.all.txt
-Downloading CRA007122.Celltype.txt from https://zenodo.org/records/19347241/files/CRA007122.Celltype.txt?download=1...
-Successfully downloaded: CRA007122.Celltype.txt
-Downloading CRA007122.topDEGs.csv from https://zenodo.org/records/19347241/files/CRA007122.topDEGs.csv?download=1...
-Successfully downloaded: CRA007122.topDEGs.csv
-Downloading Celltype.txt from https://zenodo.org/records/19347241/files/Celltype.txt?download=1...
-Successfully downloaded: Celltype.txt
-Downloading Dicot_Orthogroups.txt from https://zenodo.org/records/19347241/files/Dicot_Orthogroups.txt?download=1...
-Successfully downloaded: Dicot_Orthogroups.txt
-Starting to process 2 datasets from Dicot Database...
-Read Orthogroups information...
-Load Database data...
-Processing CRA008947 with prefix d1...
-Processing CRA007122 with prefix d2...
-Merging complete! Total cells: 2
-Generate file of the query data specified by the user to 02.QueryData...
-01.Read data and creat directory: /jdfsbjcas1/ST_BJ/P21Z28400N0234/dulin/annotation/6.2025.4.11-cross-sp/04.label_seq_v4/0.figure/github/CellBlaster-main/CellBlaster-main/tests/Output/02.QueryData/
-Filtering genes containing: AthLNC|Mt-|cp
-02.Performing Outlier Detection...
-03.DEG Analysis (Wilcoxon Rank-Sum Test)...
-04.Generating symbolic outputs...
-Annotaion starting...
-Number of common OGs: 84
-Computing similarity:   0%|          | 0/908 [00:00<?, ?it/s]Computing similarity:   8%|▊         | 76/908 [00:00<00:01, 759.04it/s]Computing similarity:  17%|█▋        | 154/908 [00:00<00:00, 766.11it/s]Computing similarity:  26%|██▌       | 232/908 [00:00<00:00, 770.19it/s]Computing similarity:  34%|███▍      | 310/908 [00:00<00:00, 770.74it/s]Computing similarity:  43%|████▎     | 388/908 [00:00<00:00, 772.41it/s]Computing similarity:  51%|█████▏    | 466/908 [00:00<00:00, 772.44it/s]Computing similarity:  60%|█████▉    | 544/908 [00:00<00:00, 772.34it/s]Computing similarity:  69%|██████▊   | 622/908 [00:00<00:00, 773.23it/s]Computing similarity:  77%|███████▋  | 700/908 [00:00<00:00, 773.69it/s]Computing similarity:  86%|████████▌ | 778/908 [00:01<00:00, 772.72it/s]Computing similarity:  94%|█████████▍| 856/908 [00:01<00:00, 772.25it/s]Computing similarity: 100%|██████████| 908/908 [00:01<00:00, 771.65it/s]
-Number of common OGs: 65
-Computing similarity:   0%|          | 0/908 [00:00<?, ?it/s]Computing similarity:   6%|▋         | 58/908 [00:00<00:01, 578.97it/s]Computing similarity:  13%|█▎        | 118/908 [00:00<00:01, 589.57it/s]Computing similarity:  20%|█▉        | 178/908 [00:00<00:01, 592.86it/s]Computing similarity:  26%|██▌       | 238/908 [00:00<00:01, 594.99it/s]Computing similarity:  33%|███▎      | 299/908 [00:00<00:01, 597.04it/s]Computing similarity:  40%|███▉      | 359/908 [00:00<00:00, 594.30it/s]Computing similarity:  46%|████▌     | 419/908 [00:00<00:00, 594.09it/s]Computing similarity:  53%|█████▎    | 479/908 [00:00<00:00, 594.35it/s]Computing similarity:  59%|█████▉    | 539/908 [00:00<00:00, 596.01it/s]Computing similarity:  66%|██████▌   | 600/908 [00:01<00:00, 597.61it/s]Computing similarity:  73%|███████▎  | 660/908 [00:01<00:00, 597.99it/s]Computing similarity:  79%|███████▉  | 720/908 [00:01<00:00, 598.56it/s]Computing similarity:  86%|████████▌ | 780/908 [00:01<00:00, 597.63it/s]Computing similarity:  93%|█████████▎| 840/908 [00:01<00:00, 598.05it/s]Computing similarity:  99%|█████████▉| 900/908 [00:01<00:00, 598.34it/s]Computing similarity: 100%|██████████| 908/908 [00:01<00:00, 596.13it/s]
-Qualified celltype:  ['Cortex', 'Endodermis', 'Pericycle', 'Procambium', 'Root cap']
-2  round of blast celltype
-Number of common OGs: 84
-Computing similarity:   0%|          | 0/281 [00:00<?, ?it/s]Computing similarity:  75%|███████▌  | 212/281 [00:00<00:00, 2119.61it/s]Computing similarity: 100%|██████████| 281/281 [00:00<00:00, 2118.62it/s]
-Number of common OGs: 65
-Computing similarity:   0%|          | 0/281 [00:00<?, ?it/s]Computing similarity:  47%|████▋     | 132/281 [00:00<00:00, 1312.46it/s]Computing similarity:  94%|█████████▍| 265/281 [00:00<00:00, 1317.02it/s]Computing similarity: 100%|██████████| 281/281 [00:00<00:00, 1315.46it/s]
-/jdfsbjcas1/ST_BJ/P21Z28400N0234/dulin/annotation/6.2025.4.11-cross-sp/04.label_seq_v4/0.figure/github/CellBlaster-main/CellBlaster-main/CellBlaster/CellBlaster.py:175: UserWarning: Tight layout not applied. tight_layout cannot make axes width small enough to accommodate all axes decorations
-  plt.tight_layout()
-Qualified celltype:  ['Epidermis', 'Root hair']
