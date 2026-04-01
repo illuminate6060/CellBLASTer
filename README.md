@@ -2,7 +2,7 @@
 A universal plant scRNA-seq annotation tool inspired by cellular BLAST strategies.
 CellBlaster is a cross-species cell type identification and annotation tool designed specifically for plant single-cell transcriptome (scRNA-seq). Through cross-species orthogroup (OG) mapping, symbolic percentage encoding, and multi-round correction algorithms, it accurately maps the query dataset to the reference database, achieving high-confidence automatic cell type annotation.
 
-## Installation
+# Installation
 Open your terminal and clone the CellBlaster Repository.
 The total installation time is around 1-2 mintunes. If error occuors, please upgrade pip and try again.
 ```
@@ -10,15 +10,15 @@ git clone https://github.com/illuminate6060/CellBlaster.git
 cd CellBlaster
 pip install .
 ```
-## Usage1:Annotation by embedded dataset
-# Database
+# Usage1: Annotation by embedded dataset
+## Database
 (1) CellBlaster features two built-in databases: Dicot and Monocot. 
     Dicot Database: For broad-leaf plants.
     Monocot Database: For grasses/grains.
 (2) Please select the one that matches your sc/snRNA-seq data. 
 (3) Detailed dataset specifications are available in the Other Information section below.
 
-# Python Example
+## Python Example
 Comment out your **h5ad** file using the CellBlaster software in your  Python program, as shown below. 
 Sample code is in the "**tests**" directory.
 ```
@@ -62,7 +62,7 @@ result = cellblaster.Annotation(
     filter_keywords
 )
 ```
-# Argument Reference
+## Argument Reference
 | Argument | Shortcut | Description |
 | --dabase_type | -t | Required. Database type: Dicot or Monocot. Determines the Orthogroups and background datasets used. | 
 | --symbols | -s | "Required. List of reference IDs (e.g., -s CRA008947). Automatically downloads expression matrices, cell metadata, and DEGs to 01.DataBase." | 
@@ -75,8 +75,8 @@ result = cellblaster.Annotation(
 
 
 
-## Other Information
-**Dicot Datasets Information**
+# Other Information
+## **Dicot Datasets Information**
 | Species | Abbreviation | Count | SRA | Cell number |
 | :--- | :--- | :---: | :--- | :---: |
 | *Arabidopsis thaliana* | *A. thaliana* | 14 | SRP267870 | 188776 |
@@ -99,7 +99,7 @@ result = cellblaster.Annotation(
 | *Medicago truncatula* | *M. truncatula* | 1 | SRP390780 | 24978 |
 | *Lotus japonicus* | *L. japonicus* | 1 | SRP376527 | 19921 |
 
-**Monocot Datasets Information**
+## **Monocot Datasets Information**
 | Species | Abbreviation | Count | SRA | Cell number |
 | :--- | :--- | :---: | :--- | :---: |
 | *Oryza sativa* | *O. sativa* | 2 | SRP309176 | 33720 |
@@ -114,7 +114,7 @@ result = cellblaster.Annotation(
 | *Setaria viridis* | *S. viridis* | 1 | SRP422815_2 | 25609 |
 | *Phyllostachys edulis* | *P. edulis* | 1 | GSE229126 | 3573 |
 
-**Isoform Datasets Information**
+## **Isoform Datasets Information**
 | Type | Parameter name | File name |
 | :--- | :--- | :--- |
 | Dicot | *A. thaliana* | *A. thaliana_isoform.fa* |
