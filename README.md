@@ -69,12 +69,13 @@ result = cellblaster.Annotation(
 ```
 ## Argument Reference
 | Argument | Shortcut | Description |
-| --dabase_type | -t | Required. Database type: Dicot or Monocot. Determines the Orthogroups and background datasets used. | 
-| --symbols | -s | "Required. List of reference IDs (e.g., -s CRA008947). Automatically downloads expression matrices, cell metadata, and DEGs to 01.DataBase." | 
-| --query | -q | Required. Absolute path to the input .h5ad file containing the single-cell transcriptomic data for annotation. | 
-| --query_symbol | -qs | Required. Unique identifier for your query. Used to name generated expression matrices and results in 02.QueryData. | 
-| --filter_keywords | -f | Optional. List of keywords to filter out genes (case-insensitive). Defaults to LNC. Can include mt or cp to remove organelle genes. | 
-| --output_path | -o | Optional. Root output directory. Defaults to ./. Results are saved in the 03.Blast_Result directory. | 
+| :--- | :---: | :--- |
+| `--dabase_type` | `-t` | **Required**. Database type: `Dicot` or `Monocot`. <br> Determines the Orthogroups and background datasets used. |
+| `--symbols` | `-s` | **Required**. List of reference IDs (e.g., `-s CRA008947`). <br> Automatically downloads expression matrices, cell metadata, and DEGs to `01.DataBase`. |
+| `--query` | `-q` | **Required**. Absolute path to the input `.h5ad` file containing the single-cell transcriptomic data for annotation. |
+| `--query_symbol` | `-qs` | **Required**. Unique identifier for your query. <br> Used to name generated expression matrices and results in `02.QueryData`. |
+| `--filter_keywords` | `-f` | **Optional**. List of keywords to filter out genes (case-insensitive). <br> Defaults to `LNC`. Can include `mt` or `cp` to remove organelle genes. |
+| `--output_path` | `-o` | **Optional**. Root output directory (defaults to `./`). <br> Results are saved in the `03.Blast_Result` directory. |
 
 ## Usage2:Annotation by new defined dataset
 
