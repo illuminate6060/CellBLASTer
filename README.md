@@ -75,6 +75,17 @@ result = cellblaster.Annotation(
     filter_keywords
 )
 ```
+## Linux Example
+```
+python ../CellBlaster-main/CellBlaster-main/CellBlaster/CellBlaster.py \
+    -t Dicot \
+    -s CRA008947 CRA007122 \
+    -o ../CellBlaster-main/tests/Output \
+    -q ../CellBlaster-main/CellBlaster-main/tests/Demo_Data_SRP285040.h5ad \
+    -qs SRP285040 \
+    -f AthLNC Mt- cp &
+```
+
 ## Argument Reference
 | Argument | Shortcut | Description |
 | :--- | :---: | :--- |
@@ -86,8 +97,37 @@ result = cellblaster.Annotation(
 | `--output_path` | `-o` | **Optional**. Root output directory (defaults to `./`). <br> Results are saved in the `03.Blast_Result` directory. |
 
 ## Usage2:Annotation by new defined dataset
+If the built-in database does not meet your requirements, please refer to the examples in the Use_OwnData directory. The steps are as follows:
 
+**(1) First, download the required data for OrthoFinder.**
+Once the download is complete, add your specific isoform files to the download directory. The .fa files for the 11 species we provide can be found in the "Other Information" section at the end.
+```
+#--Step1: Download .fa file for orthofinder.
+cd  path/CellBlaster/Use_OwnData
+nohup python 1.Download_isoform.py -s T.aestivum  G.max L.japonicus M.truncatula -o **./Download** &
+```
+**-s:** The prefix of the .fa files to be downloaded from the database. Multiple values can be declared, separated by spaces (e.g., A.thaliana T.aestivum G.max).
 
+**-o:** The directory path to save the downloaded files; relative paths are supported.
+
+**(2) Run OrthoFinder to reconstruct the Orthogroups.txt file.**
+Ensure that the OrthoFinder path is correctly configured in your system.
+```
+#Step2：Orthofinder to genarate "Orthogroups.txt", check your orthofinder path.
+nohup orthofinder -f ./**Download** -t 80 -og -n result &
+```
+**-f:** The directory containing all prepared .fa files, including those downloaded in Step 1 and your own new species files.
+
+**-t: **Number of threads for OrthoFinder to use.
+
+**-n: **The directory where results will be stored. The Orthogroups.txt file will be located at: ./Download/OrthoFinder/Results_result/Orthogroups/Orthogroups.txt.
+
+**(3) Perform annotation using the newly constructed dataset.**
+Run the CellBlaster annotation pipeline based on your customized Orthogroups and datasets.
+```
+#Step3: CellBlaster for celltype annotation.
+nohup python 2.New_CellBlaster.py  -O ./Download/OrthoFinder/Results_result/Orthogroups/Orthogroups.txt -s CRA008947   CRA007122 -o ./Output  -q   path/CellBlaster-main/tests/Demo_Data_SRP285040.h5ad   -qs SRP285040  -f AthLNC Mt- cp &
+```
 
 # Other Information
 ## **Dicot Datasets Information**
