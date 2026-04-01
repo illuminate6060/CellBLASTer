@@ -13,8 +13,8 @@ pip install .
 # Usage1: Annotation by embedded dataset
 ## Database
 ### (1) CellBlaster features two built-in databases: Dicot and Monocot. 
-    **Dicot Database:** For broad-leaf plants.
-    **Monocot Database: **For grasses/grains.
+    Dicot Database: For broad-leaf plants.
+    Monocot Database: For grasses/grains.
 ### (2) Please select the one that matches your sc/snRNA-seq data. 
 ### (3) Detailed dataset specifications are available in the Other Information section below.
 
