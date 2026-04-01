@@ -3,15 +3,75 @@ A universal plant scRNA-seq annotation tool inspired by cellular BLAST strategie
 CellBlaster is a cross-species cell type identification and annotation tool designed specifically for plant single-cell transcriptome (scRNA-seq). Through cross-species orthogroup (OG) mapping, symbolic percentage encoding, and multi-round correction algorithms, it accurately maps the query dataset to the reference database, achieving high-confidence automatic cell type annotation.
 
 ## Installation
-Open your terminal and clone the CellBlaster Repository：
+Open your terminal and clone the CellBlaster Repository.
+The total installation time is around 1-2 mintunes. If error occuors, please upgrade pip and try again.
 ```
 git clone https://github.com/illuminate6060/CellBlaster.git
-# or use commend：wget https://github.com/illuminate6060/CellBlaster.git
-cd CellBlaster-main
+cd CellBlaster
 pip install .
 ```
-The total installation time is around 1-2 mintunes. If error occuors, please upgrade pip and try again.
+## Usage1:Annotation by embedded dataset
+# Database
+(1) CellBlaster features two built-in databases: Dicot and Monocot. 
+    Dicot Database: For broad-leaf plants.
+    Monocot Database: For grasses/grains.
+(2) Please select the one that matches your sc/snRNA-seq data. 
+(3) Detailed dataset specifications are available in the Other Information section below.
 
+# Python Example
+Comment out your **h5ad** file using the CellBlaster software in your  Python program, as shown below. 
+Sample code is in the "**tests**" directory.
+```
+import os
+os.environ["HDF5_USE_FILE_LOCKING"] = "FALSE"
+
+#Import the CellBlaster class from your installed package
+from CellBlaster.CellBlaster import CellBlaster
+
+# Change the current working directory to the test folder 
+# Please change to real path!!!
+os.chdir("../CellBlaster-main/tests")
+
+# Define analysis parameters
+dabase_type = "Dicot"
+symbols = ["CRA008947", "CRA007122"]
+output_path = './Output'
+query = "./Demo_Data_SRP285040.h5ad"
+query_symbol = "SRP285040"
+filter_keywords = ["AthLNC", "Mt-", "cp"]
+
+# Initialize the CellBlaster instance
+# This sets up the configuration and maps the provided parameters to the object.
+cellblaster = CellBlaster(
+    output_path, 
+    symbols, 
+    dabase_type, 
+    query, 
+    query_symbol, 
+    filter_keywords
+)
+
+# Execute the annotation pipeline
+# This method handles database downloading, sequence generation, and cell type mapping.
+result = cellblaster.Annotation(
+    output_path, 
+    symbols, 
+    dabase_type, 
+    query, 
+    query_symbol, 
+    filter_keywords
+)
+```
+# Argument Reference
+| Argument | Shortcut | Description |
+| --dabase_type | -t | Required. Database type: Dicot or Monocot. Determines the Orthogroups and background datasets used. | 
+| --symbols | -s | "Required. List of reference IDs (e.g., -s CRA008947). Automatically downloads expression matrices, cell metadata, and DEGs to 01.DataBase." | 
+| --query | -q | Required. Absolute path to the input .h5ad file containing the single-cell transcriptomic data for annotation. | 
+| --query_symbol | -qs | Required. Unique identifier for your query. Used to name generated expression matrices and results in 02.QueryData. | 
+| --filter_keywords | -f | Optional. List of keywords to filter out genes (case-insensitive). Defaults to LNC. Can include mt or cp to remove organelle genes. | 
+| --output_path | -o | Optional. Root output directory. Defaults to ./. Results are saved in the 03.Blast_Result directory. | 
+
+## Usage2:Annotation by new defined dataset
 
 
 
