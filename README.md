@@ -10,7 +10,7 @@ pip install requests pandas numpy seaborn matplotlib tqdm scanpy scikit-learn
 Open your terminal and clone the CellBlaster Repository.
 The total installation time is around 1-2 mintunes. If error occuors, please upgrade pip and try again.
 ```
-git clone https://github.com/illuminate6060/CellBlaster.git
+git clone https://github.com/illuminate6060/CellBLASTer.git
 cd CellBlaster
 pip install .
 ```
