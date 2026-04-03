@@ -1,0 +1,1 @@
+nohup python ../CellBLASTer/CellBlaster.py -t Dicot -s CRA008947   CRA007122 -o ./Output  -q   ./Demo_Data_SRP285040.h5ad   -qs SRP285040  -f AthLNC Mt- cp &
