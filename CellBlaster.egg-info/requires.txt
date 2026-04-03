@@ -1,8 +1,0 @@
-numpy
-requests
-pandas
-numpy
-seaborn
-matplotlib
-tqdm
-scanpy
