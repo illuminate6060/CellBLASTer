@@ -330,7 +330,7 @@ class CellBlaster():
             Celltype_data.append(ct)
             all_DEG.append(deg)
         Celltype_data = pd.concat(Celltype_data)
-        print(f"Merging complete! Total cells: {len(datasets)}")
+        print(f"Merging complete! Total datasets: {len(datasets)}")
         return Celltype_data,datasets,all_DEG
 
     def normalize(self,s):
