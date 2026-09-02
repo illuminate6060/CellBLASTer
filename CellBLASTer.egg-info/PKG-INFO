@@ -1,0 +1,118 @@
+Metadata-Version: 2.4
+Name: CellBLASTer
+Version: 1.0.0
+Summary: CellBLASTer: a universal plant scRNA-seq annotation tool inspired by cellular BLAST strategies
+Author: Lin Du
+Author-email: 3051065449@qq.com
+License: MIT
+Keywords: single-cell RNA-seq,cell-type annotation,plant,orthogroup,bioinformatics
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: numpy>=1.23
+Requires-Dist: pandas>=1.5
+Requires-Dist: requests>=2.28
+Requires-Dist: matplotlib>=3.6
+Requires-Dist: seaborn>=0.12
+Requires-Dist: scipy>=1.9
+Requires-Dist: scikit-learn>=1.2
+Requires-Dist: numba>=0.57
+Requires-Dist: scanpy>=1.9
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: keywords
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# CellBLASTer
+
+CellBLASTer is a plant single-cell RNA-seq cell-type annotation tool based on
+cross-species orthogroups and symbolic expression matching.
+
+## Installation from source
+
+```bash
+python -m pip install .
+```
+
+For editable development installation:
+
+```bash
+python -m pip install -e .
+```
+
+## Python API
+
+```python
+import CellBLASTer
+
+annotator = CellBLASTer.CellBlaster(
+    database_type="Dicot",
+    organ="Root",
+    symbols=["SRP169576"],
+    output_path="./Output",
+    query="./SRP182008.h5ad",
+    query_symbol="SRP182008",
+    filter_keywords=CellBLASTer.DEFAULT_NONCODING_RNA_KEYWORDS,
+    n_jobs=30,
+)
+
+results = annotator.Annotation()
+print(results)
+```
+
+The class can also be imported directly:
+
+```python
+from CellBLASTer import CellBlaster
+```
+
+## Command-line interface
+
+After installation, all three commands below are supported:
+
+```bash
+cellblaster --help
+python -m CellBLASTer --help
+python CellBLASTer/CellBlaster.py --help
+```
+
+Example:
+
+```bash
+cellblaster \
+    -t Dicot \
+    -p Root \
+    -s SRP169576 \
+    -o ./Output \
+    -q ./SRP182008.h5ad \
+    -qs SRP182008 \
+    --n-jobs 30
+```
+
+Optional user-defined reference dataset:
+
+```bash
+cellblaster \
+    -t Dicot \
+    -p Root \
+    -s SRP169576 \
+    -o ./Output \
+    -q ./SRP182008.h5ad \
+    -qs SRP182008 \
+    --reference-adata ./MyReference.h5ad \
+    --reference-symbol MyReference
+```
+
+Both the query h5ad and an optional reference h5ad must contain a `Celltype`
+column in `adata.obs`. Cell and gene identifiers must be unique.
