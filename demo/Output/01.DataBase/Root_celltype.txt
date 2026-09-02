@@ -1,0 +1,36 @@
+ct1	ct2
+Root cap	LRC
+Root cap	Columella
+Stem cell niche	QC
+Epidermis	Root hair
+Vascular	Procambium
+Vascular	Stele
+Stele	Xylem
+Stele	Metaxylem
+Stele	Protoxylem
+Stele	Phloem
+Stele	Protophloem
+Stele	Metaphloem
+Stele	Companion
+Stele	Sieve elements
+Stele	Phloem parenchyma
+Vascular	Xylem
+Vascular	Metaxylem
+Vascular	Protoxylem
+Vascular	Phloem
+Vascular	Protophloem
+Vascular	Metaphloem
+Vascular	Companion
+Vascular	Sieve elements
+Vascular	Phloem parenchyma
+Xylem	Metaxylem
+Xylem	Protoxylem
+Phloem	Protophloem
+Phloem	Metaphloem
+Phloem	Companion
+Phloem	Sieve elements
+Phloem	Phloem parenchyma
+Pericycle	XPP
+Pericycle	PPP
+Stele	Sieve element
+Phloem	Sieve element
