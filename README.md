@@ -159,38 +159,14 @@ nohup python 2.New_CellBlaster.py  -O ./Download/OrthoFinder/Results_result/Orth
 ## **Root Datasets Information**
 | Species | Classification | Accession |
 |---------|----------------|-----------|
-| *Arabidopsis thaliana* | Dicotyledon | SRP267870 |
-| | | SRP235541 |
-| | | SRP171040 |
-| | | SRP182008 |
-| | | SRP166333 |
-| | | SRP285817 |
-| | | SRP273996 |
-| | | SRP330542 |
-| | | SRP173393 |
-| | | SRP169576 |
-| | | SRP148288 |
-| | | SRP332285 |
-| | | SRP285040 |
-| | | SRP394711 |
-| | | SRP422815 |
-| | | SRP327656 |
-| | | SRP363581 |
-| | | SRP279055 |
-| *Glycine max* | Dicotyledon | CRA007122 |
-| | | CRA008947 |
+| *Arabidopsis thaliana* | Dicotyledon | SRP267870、SRP235541、SRP171040、SRP182008、SRP166333、SRP285817、SRP273996、SRP330542、SRP173393、SRP169576、SRP148288、SRP332285、SRP285040、SRP394711、SRP422815、SRP327656、SRP363581、SRP279055|
+| *Glycine max* | Dicotyledon | CRA007122、CRA008947|
 | *Manihot esculenta* | Dicotyledon | SRP406470 |
 | *Medicago truncatula* | Dicotyledon | SRP390780 |
 | *Lotus japonicus* | Dicotyledon | SRP376527 |
-| *Oryza sativa* | Monocotyledon | SRP309176 |
-| | | SRP250946 |
-| | | CRA004082 |
-| *Triticum aestivum* | Monocotyledon | CRA008788 |
-| | | GSE270342 |
-| | | SRP543892 |
-| *Zea mays* | Monocotyledon | SRP145013 |
-| | | GSE225118 |
-| | | SRP335180 |
+| *Oryza sativa* | Monocotyledon | SRP309176、SRP250946、CRA004082|
+| *Triticum aestivum* | Monocotyledon | CRA008788、GSE270342、SRP543892|
+| *Zea mays* | Monocotyledon | SRP145013、GSE225118、SRP335180|
 | *Sorghum bicolor* | Monocotyledon | SRP422815_1 |
 | *Setaria viridis* | Monocotyledon | SRP422815_2 |
 | *Phyllostachys edulis* | Monocotyledon | GSE229126 |
@@ -198,17 +174,7 @@ nohup python 2.New_CellBlaster.py  -O ./Download/OrthoFinder/Results_result/Orth
 ## **Leaf Datasets Information**
 | Species | Classification | Accession |
 |---------|----------------|-----------|
-| *Arabidopsis thaliana* | Dicotyledon | SRP292306 |
-| | | ERP132245 |
-| | | SRP247828_1 |
-| | | SRP247828_2 |
-| | | SRP247828_3 |
-| | | CRA002977_1 |
-| | | SRP307169 |
-| | | SRP280069 |
-| | | SRP398011 |
-| | | SRP338044 |
-| | | EMTAB11006 |
+| *Arabidopsis thaliana* | Dicotyledon | SRP292306、ERP132245、SRP247828_1、SRP247828_2、SRP247828_3、CRA002977_1、SRP307169、SRP280069、SRP398011、SRP338044、EMTAB11006|
 | *Fragaria vesca* | Dicotyledon | CRA004848 |
 | *Catharanthus roseus* | Dicotyledon | SRP335448 |
 | *Gossypium bickii* | Dicotyledon | SRP424189 |
@@ -216,22 +182,15 @@ nohup python 2.New_CellBlaster.py  -O ./Download/OrthoFinder/Results_result/Orth
 | *Brassica rapa* | Dicotyledon | CRA006988 |
 | *Nepeta tenuifolia* | Dicotyledon | SRP326816 |
 | *Manihot esculenta* | Dicotyledon | CRA012723 |
-| *Oryza sativa* | Monocotyledon | SRP286275 |
-|  | | CRA004082 |
-| *Zea mays* | Monocotyledon | SRP281914 |
-| | | SRP325657 |
-| | | SRP224648 |
-| | | CRR923261 |
-| | | SRP417893 |
+| *Oryza sativa* | Monocotyledon | SRP286275、CRA004082|
+| *Zea mays* | Monocotyledon | SRP281914、SRP325657、SRP224648、CRR923261、SRP417893|
+
 
 ## **Flower Datasets Information**
 | Species | Classification | Accession |
 |---------|----------------|-----------|
-| *Arabidopsis thaliana* | Dicotyledon | SRP320285 |
-| *Arabidopsis thaliana* | | EMTAB9174 |
-| *Arabidopsis thaliana* | | SRP374045 |
-| *Gossypium hirsutum* | Dicotyledon | SRP241596 |
-|  | | SRP379192 |
+| *Arabidopsis thaliana* | Dicotyledon | SRP320285、EMTAB9174、SRP374045|
+| *Gossypium hirsutum* | Dicotyledon | SRP241596、SRP379192|
 | *Bombax ceiba* | Dicotyledon | CRA009614 |
 | *Oryza sativa* | Monocotyledon | SRP386976 |
 | *Zea mays* | Monocotyledon | SRP272727_23_26 |
