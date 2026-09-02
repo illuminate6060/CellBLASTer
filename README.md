@@ -1,6 +1,18 @@
 # CellBLASTer
 A universal plant scRNA-seq annotation tool inspired by cellular BLAST strategies.
 CellBlaster is a cross-species cell type identification and annotation tool designed specifically for plant single-cell transcriptome (scRNA-seq). Through cross-species orthogroup (OG) mapping, symbolic percentage encoding, and multi-round correction algorithms, it accurately maps the query dataset to the reference database, achieving high-confidence automatic cell type annotation.
+<img width="2560" height="2621" alt="Figure1-1" src="https://github.com/user-attachments/assets/9cb54eaa-5734-40ce-85a9-5ad77af80137" />
+
+# CellBLASTer currently supports:
+- Dicot and Monocot reference databases;
+- Root, Leaf, and Flower reference databases;
+- One or more online reference datasets;
+- User-provided custom reference `.h5ad` datasets;
+- Detection of potential de novo cell types;
+- Multi-round iterative annotation;
+- CSV, PNG, and PDF outputs;
+- A Python API, the `cellblaster` command, and `python -m CellBLASTer`.
+
 
 # Installation
 Before running CellBlaster, ensure you have Python 3.8+ installed. You can install all required dependencies using pip:
@@ -12,79 +24,71 @@ The total installation time is around 1-2 mintunes. If error occuors, please upg
 ```
 git clone https://github.com/illuminate6060/CellBLASTer.git
 cd CellBlaster
-pip install .
+python -m pip install .    # or use "pip install ."
 ```
 # 
-
-
-
-# Usage1: Annotation by embedded dataset
-## Database
-**(1) CellBlaster features two built-in databases: Dicot and Monocot.**
-
-    Dicot Database: For broad-leaf plants.
-    
-    Monocot Database: For grasses/grains.
-    
-**(2) Please select the one that matches your sc/snRNA-seq data.**
-
-**(3) Detailed dataset specifications are available in the Other Information section below.**
 
 
 ## Python Example
 Comment out your **h5ad** file using the CellBlaster software in your  Python program, as shown below. 
 Sample code is in the "**tests**" directory.
 ```
-import os
-os.environ["HDF5_USE_FILE_LOCKING"] = "FALSE"
+import CellBLASTer
 
-#Import the CellBlaster class from your installed package
-from CellBlaster.CellBlaster import CellBlaster
-
-# Change the current working directory to the test folder 
-# Please change to real path!!!
-os.chdir("../CellBlaster-main/tests")
-
-# Define analysis parameters
-dabase_type = "Dicot"
-symbols = ["CRA008947", "CRA007122"]
-output_path = './Output'
-query_path = "./Demo_Data_SRP285040.h5ad"
-query_symbol = "SRP285040"
-filter_keywords = ["AthLNC", "Mt-", "cp"]
-
-# Initialize the CellBlaster instance
-# This sets up the configuration and maps the provided parameters to the object.
-cellblaster = CellBlaster(
-    output_path, 
-    symbols, 
-    dabase_type, 
-    query_path, 
-    query_symbol, 
-    filter_keywords
+annotator = CellBLASTer.CellBlaster(
+    database_type="Dicot",
+    organ="Root",
+    symbols=["SRP169576"],
+    output_path="./Output",
+    query="./SRP182008.h5ad",
+    query_symbol="SRP182008",
+    n_jobs=30,
 )
 
-# Execute the annotation pipeline
-# This method handles database downloading, sequence generation, and cell type mapping.
-result = cellblaster.Annotation(
-    output_path, 
-    symbols, 
-    dabase_type, 
-    query_path, 
-    query_symbol, 
-    filter_keywords
-)
+results = annotator.Annotation()
 ```
-## Linux Example
+
+The class can also be imported directly:
+
+```python
+from CellBLASTer import CellBlaster
 ```
-python ../CellBlaster-main/CellBlaster-main/CellBlaster/CellBlaster.py \
+
+
+## Command-line interface
+After installation, all three commands below are supported:
+```bash
+cellblaster --help
+python -m CellBLASTer --help
+python CellBLASTer/CellBlaster.py --help
+```
+Example:
+```bash
+cellblaster \
     -t Dicot \
-    -s CRA008947 CRA007122 \
-    -o ../CellBlaster-main/tests/Output \
-    -q ../CellBlaster-main/CellBlaster-main/tests/Demo_Data_SRP285040.h5ad \
-    -qs SRP285040 \
-    -f AthLNC Mt- cp &
+    -p Root \
+    -s SRP169576 \
+    -o ./Output \
+    -q ./SRP182008.h5ad \
+    -qs SRP182008 \
+    --n-jobs 30
 ```
+
+Optional user-defined reference dataset:
+```bash
+cellblaster \
+    -t Dicot \
+    -p Root \
+    -s SRP169576 \
+    -o ./Output \
+    -q ./SRP182008.h5ad \
+    -qs SRP182008 \
+    --reference-adata ./MyReference.h5ad \
+    --reference-symbol MyReference
+```
+Both the query h5ad and an optional reference h5ad must contain a `Celltype`
+column in `adata.obs`. Cell and gene identifiers must be unique.
+
 
 ## Argument Reference
 | Argument | Shortcut | Description |
