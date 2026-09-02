@@ -1,32 +1,105 @@
 # CellBLASTer
 A universal plant scRNA-seq annotation tool inspired by cellular BLAST strategies.
-CellBlaster is a cross-species cell type identification and annotation tool designed specifically for plant single-cell transcriptome (scRNA-seq). Through cross-species orthogroup (OG) mapping, symbolic percentage encoding, and multi-round correction algorithms, it accurately maps the query dataset to the reference database, achieving high-confidence automatic cell type annotation.
+CellBlaster is a cross-species cell type identification and annotation tool designed specifically for plant single-cell transcriptome (scRNA-seq). Through cross-species orthogroups mapping, symbolic percentage encoding, and multi-round correction algorithms, it accurately maps the query dataset to the reference database, achieving high-confidence automatic cell type annotation.
 <img width="2560" height="2621" alt="Figure1-1" src="https://github.com/user-attachments/assets/9cb54eaa-5734-40ce-85a9-5ad77af80137" />
 
 # CellBLASTer currently supports:
-- Dicot and Monocot reference databases;
-- Root, Leaf, and Flower reference databases;
-- One or more online reference datasets;
+- Dicot and Monocot / Root, Leaf, and Flower reference databases;
 - User-provided custom reference `.h5ad` datasets;
 - Detection of potential de novo cell types;
 - Multi-round iterative annotation;
 - CSV, PNG, and PDF outputs;
 - A Python API, the `cellblaster` command, and `python -m CellBLASTer`.
 
+# Analysis workflow
+```mermaid
+flowchart LR
+    A[Query h5ad] --> B[Gene filtering and normalization]
+    B --> C[DBSCAN + LOF outlier detection]
+    C --> D[Wilcoxon DEG analysis]
+    D --> E[Symbolic expression matrix]
+    F[Zenodo references] --> G[Reference database]
+    H[Optional user reference h5ad] --> I[Generate three reference files]
+    I --> G
+    E --> J[Map genes to orthogroups]
+    G --> J
+    J --> K[Shared OG calculation and de novo detection]
+    K --> L[Cell-level Top-1 similarity matching]
+    L --> M[Voting significance and iterative annotation]
+    M --> N[Final evaluation and visualization]
+```
+
+# Software requirements
+Python >= 3.9
+An isolated Conda or virtual environment is recommended. For recent Scanpy and AnnData releases, use a mutually compatible dependency set.
+
+The package declares the following primary dependencies in `setup.py`:
+```text
+numpy >= 1.23
+pandas >= 1.5
+requests >= 2.28
+matplotlib >= 3.6
+seaborn >= 0.12
+scipy >= 1.9
+scikit-learn >= 1.2
+numba >= 0.57
+scanpy >= 1.9
+```
+Scanpy installs related dependencies such as AnnData and h5py.
+
+### Recommended computing resources
+- CPU: at least 1 cores; 20–30 or more cores are recommended for large references;
+- Memory: at least 32 GB, depending on the numbers of cells and genes;
+- Storage: sufficient space for downloaded databases, query intermediates, and round-specific results;
+Some Scanpy and scikit-learn operations may densify sparse matrices, which can substantially increase memory use.
 
 # Installation
-Before running CellBlaster, ensure you have Python 3.8+ installed. You can install all required dependencies using pip:
+### Install directly from GitHub
+Replace `YOUR_USERNAME` with the actual GitHub account name:
+```bash
+python -m pip install git+https://github.com/YOUR_USERNAME/CellBLASTer.git
 ```
-pip install requests pandas numpy seaborn matplotlib tqdm scanpy scikit-learn
+### Clone and install
+```bash
+git clone https://github.com/YOUR_USERNAME/CellBLASTer.git
+cd CellBLASTer
+python -m pip install .
 ```
-Open your terminal and clone the CellBlaster Repository.
-The total installation time is around 1-2 mintunes. If error occuors, please upgrade pip and try again.
+### Build on an offline server
+If the server cannot reach PyPI but setuptools, wheel, and packaging are already installed in the active environment, run:
+```bash
+python -m build --no-isolation
 ```
-git clone https://github.com/illuminate6060/CellBLASTer.git
-cd CellBlaster
-python -m pip install .    # or use "pip install ."
+To build only a wheel:
+```bash
+python -m pip wheel . --no-deps --no-build-isolation --wheel-dir dist
 ```
-# 
+### Verify the installation
+```bash
+python -c "import CellBLASTer; print(CellBLASTer.__version__)"
+```
+Expected output:
+```text
+1.0.0
+```
+Display command-line help:
+```bash
+cellblaster --help
+```
+or:
+```bash
+python -m CellBLASTer --help
+```
+Import names are case-sensitive on Linux. Use:
+```python
+import CellBLASTer
+```
+
+# Input requirements
+### Query h5ad
+
+
+
 
 
 ## Python Example
