@@ -178,7 +178,6 @@ nohup python 2.New_CellBlaster.py  -O ./Download/OrthoFinder/Results_result/Orth
 | *Manihot esculenta* | Dicotyledon | SRP406470 |
 | *Medicago truncatula* | Dicotyledon | SRP390780 |
 | *Lotus japonicus* | Dicotyledon | SRP376527 |
-| |  |  |
 | *Oryza sativa* | Monocotyledon | SRP309176 |
 | | | SRP250946 |
 | | | CRA004082 |
@@ -213,7 +212,6 @@ nohup python 2.New_CellBlaster.py  -O ./Download/OrthoFinder/Results_result/Orth
 | *Brassica rapa* | Dicotyledon | CRA006988 |
 | *Nepeta tenuifolia* | Dicotyledon | SRP326816 |
 | *Manihot esculenta* | Dicotyledon | CRA012723 |
-| |  |  |
 | *Oryza sativa* | Monocotyledon | SRP286275 |
 |  | | CRA004082 |
 | *Zea mays* | Monocotyledon | SRP281914 |
@@ -231,7 +229,6 @@ nohup python 2.New_CellBlaster.py  -O ./Download/OrthoFinder/Results_result/Orth
 | *Gossypium hirsutum* | Dicotyledon | SRP241596 |
 |  | | SRP379192 |
 | *Bombax ceiba* | Dicotyledon | CRA009614 |
-| |  |  |
 | *Oryza sativa* | Monocotyledon | SRP386976 |
 | *Zea mays* | Monocotyledon | SRP272727_23_26 |
 
