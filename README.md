@@ -1,6 +1,6 @@
 # CellBLASTer
 A universal plant scRNA-seq annotation tool inspired by cellular BLAST strategies.
-CellBlaster is a cross-species cell type identification and annotation tool designed specifically for plant single-cell transcriptome (scRNA-seq). Through cross-species orthogroups mapping, symbolic percentage encoding, and multi-round correction algorithms, it accurately maps the query dataset to the reference database, achieving high-confidence automatic cell type annotation.
+CellBlaster is a cross-species cell type identification and annotation tool designed specifically for plant single-cell/nuclus transcriptome. Through cross-species orthogroups mapping, symbolic percentage encoding, and multi-round correction algorithms, it accurately maps the query dataset to the reference database, achieving high-confidence automatic cell type annotation.
 <img width="1706" height="1747" alt="Figure1-1" src="https://github.com/user-attachments/assets/9cb54eaa-5734-40ce-85a9-5ad77af80137" />
 
 # CellBLASTer currently supports:
@@ -30,11 +30,7 @@ flowchart LR
 ```
 
 # Software requirements
-Python >= 3.9
-
-An isolated Conda or virtual environment is recommended. For recent Scanpy and AnnData releases, use a mutually compatible dependency set.
-
-The package declares the following primary dependencies in `setup.py`:
+Python >= 3.9.  An isolated Conda or virtual environment is recommended. For recent Scanpy and AnnData releases, use a mutually compatible dependency set. The package declares the following primary dependencies in `setup.py`:
 ```text
 numpy >= 1.23
 pandas >= 1.5
@@ -77,17 +73,13 @@ python -m pip wheel . --no-deps --no-build-isolation --wheel-dir dist
 ### Verify the installation
 ```bash
 python -c "import CellBLASTer; print(CellBLASTer.__version__)"
-```
-Expected output:
-```text
-1.0.0
+#Expected output: 1.0.0
 ```
 Display command-line help:
 ```bash
 cellblaster --help
-```
-or:
-```bash
+
+#or
 python -m CellBLASTer --help
 ```
 Import names are case-sensitive on Linux. Use:
@@ -125,7 +117,7 @@ CellBLASTer selects the corresponding Zenodo record from `-t` and `-p` and downl
 It also downloads the organ/clade orthogroup file and organ-specific cell-type hierarchy file. If a file with the expected name already exists in `01.DataBase`, the current release reuses it and skips the download.
 
 ### User-defined reference h5ad
-Provide both options together:
+`--reference-adata` and `--reference-symbol` must be used together. The custom reference symbol must not duplicate a downloaded reference symbol. Provide both options together:
 ```bash
 --reference-adata ./Reference_SRP285040.h5ad
 --reference-symbol SRP285040
@@ -138,9 +130,7 @@ SRP285040.topDEGs.csv
 ```
 These files are then included with the online references specified by `-s`.
 
-`--reference-adata` and `--reference-symbol` must be used together. The custom reference symbol must not duplicate a downloaded reference symbol.
-
-# Argument Reference
+# Argument
 | Option | Required | Default | Description |
 |---|---:|---|---|
 | `-t`, `--database_type` | Yes | None | Reference clade; must be `Dicot` or `Monocot`. The legacy alias `--dabase_type` is also accepted. |
@@ -155,18 +145,7 @@ These files are then included with the online references specified by `-s`.
 | `--reference-adata` | No | None | Optional user-defined reference `.h5ad`; must be supplied with `--reference-symbol`. |
 | `--reference-symbol` | No | None | Name and output prefix for the user-defined reference. |
 
-# Non-coding RNA filtering
-When `-f` is omitted, the built-in list includes common ncRNA terms such as `lncRNA`, `lincRNA`, `ncRNA`, `miRNA`, `MIR`, `snoRNA`, `snRNA`, `tRNA`, `rRNA`, `siRNA`, `antisense`, and `circRNA`.
-Custom keywords:
-```bash
--f LNC MIR rRNA tRNA
-```
-To disable keyword filtering, place `-f` at the end of the command without values:
-```bash
-cellblaster [other options] -f
-```
-
-# Demo usage
+# Demo
 ### Demo: command-line usage
 After installing CellBLASTer, enter the demo directory:
 ```bash
@@ -192,8 +171,8 @@ cellblaster \
     -o ./Output \
     -q ./SRP182008.h5ad \
     -qs SRP182008 \
-    --reference-adata ./MyReference.h5ad \
-    --reference-symbol MyReference
+    --reference-adata ./Reference_SRP285040.h5ad \
+    --reference-symbol SRP285040
 ```
 Both the query h5ad and an optional reference h5ad must contain a `Celltype`
 column in `adata.obs`. Cell and gene identifiers must be unique.
@@ -218,16 +197,11 @@ cellblaster = CellBLASTer.CellBlaster(
     organ="Root",
     symbols=[
         "SRP422815_1",
-        "SRP422815_2",
-        "SRP145013",
-        "GSE229126",
-        "CRA008788",
         "SRP309176",
     ],
     output_path="./Output",
     query="./Query_SRP285040.h5ad",
-    query_symbol="SRP285040_Query",
-    filter_keywords=CellBLASTer.DEFAULT_NONCODING_RNA_KEYWORDS,
+    query_symbol="SRP285040",
     reference_adata="./Reference_SRP285040.h5ad",
     reference_symbol="SRP285040",
     n_jobs=30,
@@ -248,6 +222,17 @@ reference_symbol="SRP285040"
 If the constructor in your installed version defines `filter_keywords=None` and applies the built-in list when the value is `None`, `filter_keywords` can be omitted. To disable filtering explicitly, use:
 ```python
 filter_keywords=[]
+```
+
+# Non-coding RNA filtering
+When `-f` is omitted, the built-in list includes common ncRNA terms such as `lncRNA`, `lincRNA`, `ncRNA`, `miRNA`, `MIR`, `snoRNA`, `snRNA`, `tRNA`, `rRNA`, `siRNA`, `antisense`, and `circRNA`.
+Custom keywords:
+```bash
+-f LNC MIR rRNA tRNA
+```
+To disable keyword filtering, place `-f` at the end of the command without values:
+```bash
+cellblaster [other options] -f
 ```
 
 # Output structure
@@ -307,71 +292,17 @@ Round-0 assignment files are created only when de novo types are detected. The f
 | `03.Top1-predicted_percent_round_N.csv` | Row-normalized Top-1 prediction percentages. |
 | `04.Shared_OG_round_N.csv` | Shared-OG matrix aligned to the query and reference types present in the current round. |
 | `05.Blast_similarity_round_N.csv` | Cell-type similarity matrix derived from shared OGs and Top-1 proportions. |
-| `Assignment_significance_round_N.csv` | Assigned type, Top-1/Top-2 scores, margin, votes, P value, Q value, status, and round. |
 | `06.Assigned_celltype_in_round_N.csv` | Query types resolved in the current round and their similarity scores. |
+| `1.Assigned_Ctype_bar.png` | Summarizes the final reference assignment proportions across query cell types. |
+| `2.Proportion_Top1-predicted.png` | Displays the percentage of Top-1 matches from every query type to every reference type. A red border marks the maximum value in each row. This plot preserves the input order and does not cluster rows or columns. |
+| `3.Proportion_Top1-predicted_clustered.png` | Clusters the final prediction-proportion matrix by rows and columns to reveal global similarity patterns between query and reference types. |
+| `4.C_OHAS_prediction_type.png` | Displays the C-OHAS score and prediction type for each query cell type, providing a combined view of prediction category and evidence strength. |
+| `Assignment_significance_round_N.csv` | Assigned type, Top-1/Top-2 scores, margin, votes, P value, Q value, status, and round. |
+| `Proportion_Top1-predicted.csv` |  |
 | `Final_evaluation.csv` | Final hierarchy matching, statistical evidence, voting evidence, margin evidence, and C-OHAS evaluation. |
 
-# Visualizations
-### 1. Assigned Cell Type bar plot
-```text
-final_visual/1.Assigned_Ctype_bar.png
-final_visual/1.Assigned_Ctype_bar.pdf
-```
-Summarizes the final reference assignment proportions across query cell types.
-
-### 2. Top-1 prediction proportion heatmap
-```text
-final_visual/2.Proportion_Top1-predicted.png
-final_visual/2.Proportion_Top1-predicted.pdf
-```
-Displays the percentage of Top-1 matches from every query type to every reference type. A red border marks the maximum value in each row. This plot preserves the input order and does not cluster rows or columns.
-
-### 3. Clustered prediction heatmap
-```text
-final_visual/3.Proportion_Top1-predicted_clustered.png
-final_visual/3.Proportion_Top1-predicted_clustered.pdf
-```
-Clusters the final prediction-proportion matrix by rows and columns to reveal global similarity patterns between query and reference types.
-
-### 4. C-OHAS prediction-type plot
-```text
-final_visual/4.C_OHAS_prediction_type.png
-final_visual/4.C_OHAS_prediction_type.pdf
-```
-Displays the C-OHAS score and prediction type for each query cell type, providing a combined view of prediction category and evidence strength.
-
-### 5. Round-specific Top-1 count heatmap
-```text
-round_N/02.Top1-predicted_count_round_N.png
-```
-Shows the number of query cells matched to each reference type in the current round.
-
-### 6. Round-specific Top-1 percentage heatmap
-```text
-round_N/03.Top1-predicted_percent_round_N.png
-```
-Shows whether Top-1 matches are concentrated in particular reference types.
-
-### 7. Shared-orthogroup heatmap
-```text
-round_N/04.Shared_OG_round_N.png
-```
-Displays shared-orthogroup counts between the query and reference types included in the current round.
-
-### 8. BLAST similarity heatmap
-```text
-round_N/05.Blast_similarity_round_N.png
-```
-Displays the cell-type similarity score matrix for the current round.
-
-### 9. Assigned cell-type heatmap
-```text
-round_N/06.Assigned_celltype_in_round_N.png
-```
-Displays query types resolved in the current round and their assigned reference types.
-
-# Other Information
-## **Datasets Information**
+# CellBLASTer pre-embedded dataset information
+### **Datasets Information**
 | Species | Abbreviation | Classification | Root | Leaf | Flower |
 |---------|--------------|----------------|------|------|--------|
 | *Arabidopsis thaliana* | *A. thaliana* | Dicotyledon | √ | √ | √ |
@@ -392,8 +323,9 @@ Displays query types resolved in the current round and their assigned reference 
 | *Sorghum bicolor* | *S. bicolor* | Monocotyledon | √ | | |
 | *Setaria viridis* | *S. viridis* | Monocotyledon | √ | | |
 | *Phyllostachys edulis* | *P. edulis* | Monocotyledon | √ | | |
+√ indicates that CellBLASTer collected data on this species from this organization.
 
-## **Root Datasets Information**
+### **Root Datasets Information**
 | Species | Classification | Accession |
 |---------|----------------|-----------|
 | *Arabidopsis thaliana* | Dicotyledon | SRP267870、SRP235541、SRP171040、SRP182008、SRP166333、SRP285817、SRP273996、SRP330542、SRP173393、SRP169576、SRP148288、SRP332285、SRP285040、SRP394711、SRP422815、SRP327656、SRP363581、SRP279055|
@@ -408,7 +340,7 @@ Displays query types resolved in the current round and their assigned reference 
 | *Setaria viridis* | Monocotyledon | SRP422815_2 |
 | *Phyllostachys edulis* | Monocotyledon | GSE229126 |
 
-## **Leaf Datasets Information**
+### **Leaf Datasets Information**
 | Species | Classification | Accession |
 |---------|----------------|-----------|
 | *Arabidopsis thaliana* | Dicotyledon | SRP292306、ERP132245、SRP247828_1、SRP247828_2、SRP247828_3、CRA002977_1、SRP307169、SRP280069、SRP398011、SRP338044、EMTAB11006|
@@ -422,7 +354,7 @@ Displays query types resolved in the current round and their assigned reference 
 | *Oryza sativa* | Monocotyledon | SRP286275、CRA004082|
 | *Zea mays* | Monocotyledon | SRP281914、SRP325657、SRP224648、CRR923261、SRP417893|
 
-## **Flower Datasets Information**
+### **Flower Datasets Information**
 | Species | Classification | Accession |
 |---------|----------------|-----------|
 | *Arabidopsis thaliana* | Dicotyledon | SRP320285、EMTAB9174、SRP374045|
@@ -433,7 +365,7 @@ Displays query types resolved in the current round and their assigned reference 
 
 
 ## Files for orthorfinder
-The protein sequence files for all species embedded by CellBLASTer are available at https://zenodo.org/records/22254262, where the wheat sequences are separated into three files: T.aestivum_isoform.A.fa, T.aestivum_isoform.B.fa, and T.aestivum_isoform.D.fa.
+The protein sequence files for all species embedded by CellBLASTer are available at **https://zenodo.org/records/22254262**, where the wheat sequences are separated into three files: T.aestivum_isoform.A.fa, T.aestivum_isoform.B.fa, and T.aestivum_isoform.D.fa.
 
 # Troubleshooting
 ### Zenodo or network access is unavailable
