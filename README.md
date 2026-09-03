@@ -130,7 +130,7 @@ SRP285040.topDEGs.csv
 ```
 These files are then included with the online references specified by `-s`.
 
-# Argument
+# Arguments
 | Option | Required | Default | Description |
 |---|---:|---|---|
 | `-t`, `--database_type` | Yes | None | Reference clade; must be `Dicot` or `Monocot`. The legacy alias `--dabase_type` is also accepted. |
@@ -141,7 +141,7 @@ These files are then included with the online references specified by `-s`.
 | `-qs`, `--query_symbol` | Yes | None | Query name and output prefix. It may contain letters, numbers, periods, underscores, and hyphens and must begin with a letter or number. |
 | `-f`, `--filter_keywords` | No | Built-in ncRNA list | Case-insensitive gene-name substrings to remove. User values replace the default list. |
 | `--sample-ratio` | No | No downsampling | Stratified reference downsampling ratio satisfying `0 < ratio < 1`. Sampling uses Dataset + Celltype strata and random seed 42. |
-| `--n-jobs` | No | 30 | Requested Numba threads for similarity calculation; the actual value is limited by available CPUs and the Numba thread limit. |
+| `--n-jobs` | No | 30 | Requested Numba threads for similarity calculation; available CPUs and the Numba thread limit limit the actual value. |
 | `--reference-adata` | No | None | Optional user-defined reference `.h5ad`; must be supplied with `--reference-symbol`. |
 | `--reference-symbol` | No | None | Name and output prefix for the user-defined reference. |
 
@@ -298,7 +298,7 @@ Round-0 assignment files are created only when de novo types are detected. The f
 | `3.Proportion_Top1-predicted_clustered.png` | Clusters the final prediction-proportion matrix by rows and columns to reveal global similarity patterns between query and reference types. |
 | `4.C_OHAS_prediction_type.png` | Displays the C-OHAS score and prediction type for each query cell type, providing a combined view of prediction category and evidence strength. |
 | `Assignment_significance_round_N.csv` | Assigned type, Top-1/Top-2 scores, margin, votes, P value, Q value, status, and round. |
-| `Proportion_Top1-predicted.csv` |  |
+| `Proportion_Top1-predicted.csv` |  Final prediction-proportion matrix |
 | `Final_evaluation.csv` | Final hierarchy matching, statistical evidence, voting evidence, margin evidence, and C-OHAS evaluation. |
 
 # CellBLASTer pre-embedded dataset information
@@ -323,7 +323,8 @@ Round-0 assignment files are created only when de novo types are detected. The f
 | *Sorghum bicolor* | *S. bicolor* | Monocotyledon | √ | | |
 | *Setaria viridis* | *S. viridis* | Monocotyledon | √ | | |
 | *Phyllostachys edulis* | *P. edulis* | Monocotyledon | √ | | |
-√ indicates that CellBLASTer collected data on this species from this organization.
+
+The √ indicates that CellBLASTer collected data on this species from this organization.
 
 ### **Root Datasets Information**
 | Species | Classification | Accession |
@@ -364,20 +365,14 @@ Round-0 assignment files are created only when de novo types are detected. The f
 | *Zea mays* | Monocotyledon | SRP272727_23_26 |
 
 
-## Files for orthorfinder
+## Files for Orthorfinder
 The protein sequence files for all species embedded by CellBLASTer are available at **https://zenodo.org/records/22254262**, where the wheat sequences are separated into three files: T.aestivum_isoform.A.fa, T.aestivum_isoform.B.fa, and T.aestivum_isoform.D.fa.
 
 # Troubleshooting
 ### Zenodo or network access is unavailable
-Confirm that the server can access:
-```text
-https://zenodo.org
-```
-On an offline server, download the database files elsewhere and place them under:
-```text
-<output_path>/01.DataBase/
-```
-Use the exact filenames expected by CellBLASTer. Existing files are reused, and their downloads are skipped.
+Confirm that the server can access:**https://zenodo.org**
+On an offline server, download the database files elsewhere and place them under:** <output_path>/01.DataBase/**
+Also, you can use the exact filenames expected by CellBLASTer. Existing files are reused, and their downloads are skipped.
 
 ### The query has no genes that map to orthogroups
 Check that:
@@ -391,6 +386,12 @@ If `filter_keywords` is still a required constructor argument in the installed r
 ```python
 filter_keywords=CellBLASTer.DEFAULT_NONCODING_RNA_KEYWORDS
 ```
+## The query and dataset have no shared orthogroups
+This means that the query and reference have no common OGs, or the wrong database was selected. Check -t, -p, reference symbols, and gene IDs. Inspect whether 'Shared_OMG_all_CType.csv' contains only zeros.
+
+## Unable to stratify and downsample reference data
+This means that some Dataset + Celltype strata contain too few cells for the requested sampling ratio. Please omit --sample-ratio, increase the ratio, or add more reference cells for the affected strata.
+
 
 # Contact Us
 If you have any suggestions/ideas for CellBLASTer or are having issues trying to use it, please don't hesitate to reach out to us.
