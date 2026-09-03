@@ -57,11 +57,11 @@ Some Scanpy and scikit-learn operations may densify sparse matrices, which can s
 ### Install directly from GitHub
 Replace `YOUR_USERNAME` with the actual GitHub account name:
 ```bash
-python -m pip install git+https://github.com/YOUR_USERNAME/CellBLASTer.git
+python -m pip install git+https://github.com/illuminate6060/CellBLASTer.git
 ```
 ### Clone and install
 ```bash
-git clone https://github.com/YOUR_USERNAME/CellBLASTer.git
+git clone https://github.com/illuminate6060/CellBLASTer.git
 cd CellBLASTer
 python -m pip install .
 ```
