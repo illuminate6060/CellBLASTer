@@ -381,15 +381,15 @@ Check that:
 - Gene-name filtering is not overly broad.
 - `adata.var_names` contains gene IDs rather than duplicated or empty names.
 
-## Corrections for the filter_keywords
+### Corrections for the filter_keywords
 If `filter_keywords` is still a required constructor argument in the installed release, also include:
 ```python
 filter_keywords=CellBLASTer.DEFAULT_NONCODING_RNA_KEYWORDS
 ```
-## The query and dataset have no shared orthogroups
+### The query and dataset have no shared orthogroups
 This means that the query and reference have no common OGs, or the wrong database was selected. Check -t, -p, reference symbols, and gene IDs. Inspect whether 'Shared_OMG_all_CType.csv' contains only zeros.
 
-## Unable to stratify and downsample reference data
+### Unable to stratify and downsample reference data
 This means that some Dataset + Celltype strata contain too few cells for the requested sampling ratio. Please omit --sample-ratio, increase the ratio, or add more reference cells for the affected strata.
 
 
