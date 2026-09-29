@@ -1,7 +1,8 @@
 # CellBLASTer
 A universal plant scRNA-seq annotation tool inspired by cellular BLAST strategies.
 CellBlaster is a cross-species cell type identification and annotation tool designed specifically for plant single-cell/nuclus transcriptome. Through cross-species orthogroups mapping, symbolic percentage encoding, and multi-round correction algorithms, it accurately maps the query dataset to the reference database, achieving high-confidence automatic cell type annotation.
-<img width="1706" height="1747" alt="Figure1-1" src="https://github.com/user-attachments/assets/9cb54eaa-5734-40ce-85a9-5ad77af80137" />
+<img width="2189" height="2237" alt="微信图片_20260929190545_150_28" src="https://github.com/user-attachments/assets/605451c8-5d73-4be0-bc7c-46869ff1165f" />
+
 
 # CellBLASTer currently supports:
 - Dicot and Monocot / Root, Leaf, and Flower reference databases;
